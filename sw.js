@@ -1,5 +1,5 @@
-const CACHE='skilltrack-v1-3-2026-11-01';
-const ASSETS=['./','./index.html','./progress-v13.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
+const CACHE='skilltrack-v1-4-2026-11-01';
+const ASSETS=['./','./index.html','./progress-v13.js','./progress-v14.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
 self.addEventListener('fetch',event=>{
