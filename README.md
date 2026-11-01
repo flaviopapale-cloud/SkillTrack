@@ -1,4 +1,4 @@
-# SkillTrack — Calisthenics Skills (v1.1)
+# SkillTrack — Calisthenics Skills (v1.2)
 
 Mini-app locale (PWA), senza librerie e senza account. Interfaccia in italiano, progettata per il telefono.
 
@@ -59,7 +59,17 @@ Ogni sessione contiene uno snapshot della giornata, per preservare la fotografia
 1. Prima dell'aggiornamento esporta un backup JSON della versione attuale su iPhone.
 2. Nel repository GitHub Pages sostituisci **index.html** e **sw.js** con quelli inclusi qui. Gli altri file sono invariati.
 3. Apri SkillTrack sul telefono con internet, chiudila e riaprila; la PWA deve caricare la nuova versione (eventualmente riaprila ancora una volta per aggiornare il service worker).
-4. In **Impostazioni** usa **Apri diario in testo**: **Copia per Note** è la strada più comoda su iPhone; in alternativa **Scarica .txt** o **Condividi**.
+4. In **Impostazioni** usa **Scarica TXT**: **Copia per Note** è la strada più comoda su iPhone; in alternativa **Scarica .txt** o **Condividi**.
 5. Il TXT è un diario leggibile e modificabile, **non un formato per ripristinare automaticamente i dati della app**. Per il ripristino completo conserva anche **Backup JSON**.
 
 La chiave locale `skilltrack-data-v1` e lo schema JSON versione 1 sono mantenuti; nessuna cancellazione/migrazione forzata dello storico.
+
+## Novità v1.2
+
+- Il pulsante **Scarica TXT** è immediato; rimane **Anteprima e copia per Note**.
+- In **Progressi** seleziona la giornata e il mese; ogni mese di allenamento contiene 4 settimane (7 giorni ciascuna).
+- Ogni settimana presenta serie, ripetizioni/secondi e varianti per spinta e tirata; intensità mostra i blocchi.
+- I mesi precedenti sono sempre selezionabili, con confronto tra medie di serie per settimana allenata, se le condizioni sono omogenee.
+- Il diario TXT ora usa MESE 1 → W1–W4, MESE 2 → W1–W4 ecc.
+- Stesso `localStorage` e schema JSON: non vengono eliminate le sessioni precedenti.
+- Per aggiornare GitHub Pages sostituisci `index.html`, `sw.js` **e carica il nuovo `progress-v12.js`**.
