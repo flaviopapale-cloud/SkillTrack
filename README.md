@@ -1,75 +1,44 @@
-# SkillTrack — Calisthenics Skills (v1.2)
+# SkillTrack v1.5 — Inizio programma e cicli personalizzati
 
-Mini-app locale (PWA), senza librerie e senza account. Interfaccia in italiano, progettata per il telefono.
+## Novità
 
-## Provala subito
+- **Impostazioni → Calendario del programma → Data di inizio**: scegli il giorno in cui vuoi cominciare W1 del Mese 1. L'app lo allinea al **lunedì della settimana scelta**, indipendentemente dal giorno in cui è stata installata.
+- **Inizia nuovo mese (W1) da questa settimana**: chiude il mese precedente e apre un nuovo mese anche prima della quarta settimana; poi prosegue automaticamente W1, W2, W3, W4.
+- **Settimane in pausa**: escludi dal conteggio le settimane intere in cui non ti alleni. Al rientro la numerazione riprende senza consumare una W del programma.
+- **Modifica o elimina gli inizi mese personalizzati** e **rimuovi le pause** dalle Impostazioni.
+- **Home e Progressi** mostrano il mese/settimana attuali e un collegamento rapido al calendario.
+- Lo storico, le progressioni, il TXT sintetico per il coach e i backup JSON seguono la nuova numerazione. L'assegnazione manuale di una sessione a Mese/Week (v1.3) continua a funzionare e non viene modificata.
 
-Apri `index.html` in un browser. Non è necessario installare dipendenze o creare un account. Per attivare installazione PWA e utilizzo offline ospita l'intera cartella tramite HTTPS, ad esempio con GitHub Pages (o un server locale durante lo sviluppo).
+### Esempio: il problema di domenica 1 novembre
 
-## Quattro giorni preconfigurati dalla scheda fotografata
+Se hai creato una sessione domenica **01/11/2026**, nella versione precedente il lunedì 02/11 risultava W2 perché il programma veniva ancorato al lunedì precedente (26/10).
 
-- **Volume 1**: riscaldamento 15 min, blocco Presse + Touch 60 min, condizionamento loop 15 min.
-- **Intensità Loop**: riscaldamento, due serie combo spinta, due combo tirata, tre power spinta, tre power tirata, finale EMOM 10 min.
-- **Volume 2**: riscaldamento 15 min, Mezza supina push deadstop + PUT & Pull 60 min, condizionamento 15 min.
-- **Intensità Libero**: due combo spinta, due combo tirata, set eventuale, tre serie power per categoria, EMOM 10 min.
+Per fare partire il programma lunedì **02/11/2026**:
 
-Nomi e abbreviazioni dal documento originale sono stati conservati quanto possibile. **Controlla l'associazione spinta/tirata e i dettagli della scheda**: alcune notazioni non sono del tutto univoche.
+1. Apri **SkillTrack → Impostazioni → Calendario del programma**.
+2. Imposta **Data di inizio del programma: 02/11/2026**.
+3. Premi **Salva data iniziale**.
+4. La settimana del 2 novembre diventa **Mese 1, W1**. La settimana successiva sarà W2, salvo pause o modifiche manuali.
 
-## Funzionalità
+### Come gestire le settimane saltate e i mesi variabili
 
-- Calendario **non rigido**: puoi scegliere qualsiasi giornata; aggiungere/eliminare giornate per schede da 3/4/5+ allenamenti.
-- Registra superserie con un pulsante, oppure una serie di spinta/tirata.
-- Target preimpostato, modificabile in corso d'opera; ogni serie conserva il valore di quando è stata registrata.
-- Ripetizioni, secondi, combo, progressione, assistenza loop, sovraccarico e qualità della singola serie.
-- Timer autonomo per il blocco volume e timer per il finale EMOM.
-- Registrazione delle serie programmate nei giorni intensità, intervalli EMOM individuali.
-- Storico modificabile, grafici delle serie, percentuali solo per sessioni confrontabili.
-- Appunti W1–W13 del vecchio PDF conservati come archivio **testuale**, esclusi dai calcoli automatici fino a quando la notazione non sarà chiarita.
-- Salvataggio automatico locale, backup completo JSON, e diario TXT editabile in Note (con copia, condivisione e download).
-- Disattivati i doppi tocchi che provocano zoom involontario su iPhone; ingranditi i campi sotto 16px per evitare lo zoom automatico di Safari.
+- Nessun allenamento nella settimana del 09/11? Seleziona **09/11/2026** in **Settimane in pausa** e premi **Aggiungi settimana di pausa**. La settimana del 16/11 sarà W2, invece di W3; il mese durerà cinque settimane di calendario, con quattro settimane allenabili.
+- Vuoi concludere il mese prima? In **Inizia nuovo mese** scegli la data dalla quale comincerà la prossima W1; le settimane del mese precedente non ancora completate rimarranno vuote.
+- Hai già registrato un allenamento nella settimana che vuoi dichiarare in pausa? Prima assegnalo manualmente alla settimana desiderata nello Storico. Questo evita spostamenti imprevedibili.
+- Se registri oggi una seduta di una settimana precedente, continua a usare **Cambia settimana** all'interno di quella seduta, indipendentemente da quanto è avanzato il calendario.
 
-## Limiti della v1
+## Sicurezza dati
 
-- Non c'è login, cloud sync o vera condivisione multiutente. L'architettura dati usa un identificatore profilo, e le giornate non sono fissate a quattro: è una base per evolvere verso un backend multiutente.
-- Le statistiche di una combo non aggregano automaticamente movimenti eterogenei in una scala di forza comune.
-- La variazione delle serie quando cambiano progressione, loop o target viene mostrata solo come dato grezzo, **non come aumento di forza %**.
-- Il browser può cancellare i dati locali: esegui backup regolari. Gli aggiornamenti dell'app non dovrebbero cancellare localStorage, ma nessun backup è garantito senza esportazione.
-- Il file `index.html` aperto direttamente da file system è utilizzabile ma non installabile come PWA e non ha service worker: per questi serve un contesto HTTPS.
+Tutti gli allenamenti rimangono nel `localStorage` della stessa web app. **Non rimuovere l'icona della PWA e non cancellare i dati del browser.** Prima di aggiornare, salva **Impostazioni → Backup JSON** su iCloud Drive. Il TXT è un diario da inviare al coach, non un backup importabile.
 
-## Installazione con GitHub Pages
+Spostare la data d'inizio o un inizio mese può ricalcolare la settimana degli allenamenti **automatici**, senza eliminarli; le sessioni **assegnate manualmente** mantengono la loro collocazione. Se la nuova data è posteriore ad alcuni allenamenti molto vecchi, il riepilogo può collocarli in W1 del primo mese: puoi correggerli singolarmente.
 
-1. Crea un repository pubblico o usa il tuo repository già esistente.
-2. Carica nella radice `index.html`, `sw.js`, `manifest.webmanifest`, `icon.svg`, `icon-192.png`, `icon-512.png`.
-3. Vai in **Settings → Pages** e pubblica la branch principale dalla root.
-4. Apri il link HTTPS di GitHub Pages e scegli **Aggiungi a schermata Home** (Safari su iPhone) oppure **Installa app** (Chrome Android).
+## Come aggiornare il repository GitHub Pages
 
-Nota: anche quando ospitata online, i risultati vengono salvati **solo nel browser/dispositivo** con cui accedi, non nel repository GitHub né su server.
+1. Fai backup JSON dall'iPhone e salvalo esternamente.
+2. Dal file `SkillTrack_aggiornamento_v1_5.zip` estrai **tre file**: `index.html`, `sw.js`, `progress-v15.js`.
+3. Caricali nella **radice** del tuo repository GitHub, sostituendo i file esistenti quando necessario.
+4. **Non cancellare** `progress-v13.js`, `progress-v14.js`, `manifest.webmanifest`, icone o altri file.
+5. Premi **Commit changes**. Quando GitHub Pages ha finito, apri la PWA su iPhone con connessione attiva; chiudila e riaprila se vedi ancora la vecchia versione.
 
-## Organizzazione dati
-
-`profile` + `days[]` (scheda variabile) + `activeSession` + `history[]` + `legacyNotes`.
-Ogni sessione contiene uno snapshot della giornata, per preservare la fotografia della programmazione originale, più gli esiti delle serie.
-
-## Codice
-
-È volutamente vanilla JavaScript + HTML + CSS, senza pacchetti esterni e senza build. Puoi modificare `index.html` e usare un server statico.
-
-## Aggiornamento dalla v1 già installata
-
-1. Prima dell'aggiornamento esporta un backup JSON della versione attuale su iPhone.
-2. Nel repository GitHub Pages sostituisci **index.html** e **sw.js** con quelli inclusi qui. Gli altri file sono invariati.
-3. Apri SkillTrack sul telefono con internet, chiudila e riaprila; la PWA deve caricare la nuova versione (eventualmente riaprila ancora una volta per aggiornare il service worker).
-4. In **Impostazioni** usa **Scarica TXT**: **Copia per Note** è la strada più comoda su iPhone; in alternativa **Scarica .txt** o **Condividi**.
-5. Il TXT è un diario leggibile e modificabile, **non un formato per ripristinare automaticamente i dati della app**. Per il ripristino completo conserva anche **Backup JSON**.
-
-La chiave locale `skilltrack-data-v1` e lo schema JSON versione 1 sono mantenuti; nessuna cancellazione/migrazione forzata dello storico.
-
-## Novità v1.2
-
-- Il pulsante **Scarica TXT** è immediato; rimane **Anteprima e copia per Note**.
-- In **Progressi** seleziona la giornata e il mese; ogni mese di allenamento contiene 4 settimane (7 giorni ciascuna).
-- Ogni settimana presenta serie, ripetizioni/secondi e varianti per spinta e tirata; intensità mostra i blocchi.
-- I mesi precedenti sono sempre selezionabili, con confronto tra medie di serie per settimana allenata, se le condizioni sono omogenee.
-- Il diario TXT ora usa MESE 1 → W1–W4, MESE 2 → W1–W4 ecc.
-- Stesso `localStorage` e schema JSON: non vengono eliminate le sessioni precedenti.
-- Per aggiornare GitHub Pages sostituisci `index.html`, `sw.js` **e carica il nuovo `progress-v12.js`**.
+Il codice è statico, gira nel browser, senza backend. Lo storico rimane locale e non viene pubblicato su GitHub.
