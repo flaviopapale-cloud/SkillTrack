@@ -1,44 +1,55 @@
-# SkillTrack v1.5 — Inizio programma e cicli personalizzati
+# SkillTrack personale v1.6 — diario intensità nello stile del coach
 
-## Novità
+## Cosa cambia
 
-- **Impostazioni → Calendario del programma → Data di inizio**: scegli il giorno in cui vuoi cominciare W1 del Mese 1. L'app lo allinea al **lunedì della settimana scelta**, indipendentemente dal giorno in cui è stata installata.
-- **Inizia nuovo mese (W1) da questa settimana**: chiude il mese precedente e apre un nuovo mese anche prima della quarta settimana; poi prosegue automaticamente W1, W2, W3, W4.
-- **Settimane in pausa**: escludi dal conteggio le settimane intere in cui non ti alleni. Al rientro la numerazione riprende senza consumare una W del programma.
-- **Modifica o elimina gli inizi mese personalizzati** e **rimuovi le pause** dalle Impostazioni.
-- **Home e Progressi** mostrano il mese/settimana attuali e un collegamento rapido al calendario.
-- Lo storico, le progressioni, il TXT sintetico per il coach e i backup JSON seguono la nuova numerazione. L'assegnazione manuale di una sessione a Mese/Week (v1.3) continua a funzionare e non viene modificata.
+- Il riepilogo **INTENSITÀ LOOP / INTENSITÀ LIBERO** non stampa più descrizioni verbose come "Combo spinta · ... (1x1 combo/...)". Crea **una riga per blocco realmente registrato**, nel formato `2x sequenza - loop`, per ciascuna W1–W4.
+- In ogni serie d'intensità puoi inserire **l'esercizio/combos realmente eseguiti** anche se diversi dalla scheda (es. iso al posto di elevate maltese). L'esercizio pianificato rimane nel programma.
+- **Commento al coach** per singola serie, visibile anche nello storico e nel TXT tra parentesi quadre.
+- **Esercizi EMOM**: campo libero per la sequenza svolta, ad esempio `2push adv + put, pu`. Se sono stati completati sei minuti su dieci, nel TXT appare `EMOM10’ - 6x2push adv + put, pu`.
+- **Nota al coach** per l'intera sessione, mostrata nel TXT.
+- **Personalizza testo** in allenamento o nello storico: permette di riscrivere l'intero riepilogo della sessione, se serve una notazione più particolare. Puoi in qualsiasi momento ripristinare la generazione automatica.
+- **Registra esercizio libero / extra** se durante l'intensità fai un movimento non previsto dai blocchi. Aggiunge un blocco soltanto alla sessione, non alla scheda generale.
+- La vista Progressi e il TXT completo/copia per coach usano lo stesso nuovo formato.
+- Il Volume, il calendario e le settimane restano invariati.
 
-### Esempio: il problema di domenica 1 novembre
+## Esempio di esportazione
 
-Se hai creato una sessione domenica **01/11/2026**, nella versione precedente il lunedì 02/11 risultava W2 perché il programma veniva ancorato al lunedì precedente (26/10).
+```text
+INTENSITÀ LOOP — MESE 1
+W1 - 2x pu slow, press, neg, iso, lsit, iso, press (full) - VR
+2x put slow, pu, pu (full) - VR
+3x maltese elev - VR2G
+3x put semi wide - VR2G
+EMOM10’ - 6x2push adv + put, pu
+W2 - —
+W3 - —
+W4 - —
+```
 
-Per fare partire il programma lunedì **02/11/2026**:
+Questo risultato dipende da ciò che **registri nei campi reali**; l'app non interpreta da sola abbreviazioni o inventa i movimenti eseguiti. Se lasci il nome precompilato, verrà riportato quello programmato.
 
-1. Apri **SkillTrack → Impostazioni → Calendario del programma**.
-2. Imposta **Data di inizio del programma: 02/11/2026**.
-3. Premi **Salva data iniziale**.
-4. La settimana del 2 novembre diventa **Mese 1, W1**. La settimana successiva sarà W2, salvo pause o modifiche manuali.
+## Aggiornamento su GitHub Pages
 
-### Come gestire le settimane saltate e i mesi variabili
+1. **Prima di tutto**, sull'iPhone vai in SkillTrack → Impostazioni → **Backup JSON** e salva il file in iCloud Drive. Il TXT non è un backup ripristinabile.
+2. Scarica `SkillTrack_aggiornamento_personale_v1_6.zip` ed estrai `index.html`, `sw.js`, `progress-v16.js`.
+3. Apri **il repository della tua SkillTrack personale**, non SkillTrack Coach né skilltrack-platform.
+4. Carica i tre file **nella radice** del repository, sostituendo i precedenti `index.html` e `sw.js`; `progress-v16.js` sarà nuovo.
+5. Premi Commit changes e attendi il completamento di GitHub Pages.
+6. Su iPhone, con Internet attivo, riapri SkillTrack; se non vedi le novità, chiudi e riapri. **Non eliminare la PWA né cancellare la memoria del browser.**
+7. **Non eliminare** `progress-v13.js`, `progress-v14.js`, `progress-v15.js`, `manifest.webmanifest` o le icone: servono ancora.
 
-- Nessun allenamento nella settimana del 09/11? Seleziona **09/11/2026** in **Settimane in pausa** e premi **Aggiungi settimana di pausa**. La settimana del 16/11 sarà W2, invece di W3; il mese durerà cinque settimane di calendario, con quattro settimane allenabili.
-- Vuoi concludere il mese prima? In **Inizia nuovo mese** scegli la data dalla quale comincerà la prossima W1; le settimane del mese precedente non ancora completate rimarranno vuote.
-- Hai già registrato un allenamento nella settimana che vuoi dichiarare in pausa? Prima assegnalo manualmente alla settimana desiderata nello Storico. Questo evita spostamenti imprevedibili.
-- Se registri oggi una seduta di una settimana precedente, continua a usare **Cambia settimana** all'interno di quella seduta, indipendentemente da quanto è avanzato il calendario.
+## Come utilizzarlo
 
-## Sicurezza dati
+- Apri Intensità Loop o Libero, registra una serie: nel pannello compila **Esercizio o combo realmente eseguita**, **Loop / assistenza**, e **Commento da mostrare al coach**.
+- Per il finale, usa il bottone **Esercizi EMOM** nel riepilogo e scrivi la sequenza da esportare.
+- Se vuoi una nota generale, usa **Note per coach**.
+- Se vuoi un testo esattamente tuo, usa **Personalizza testo**; le modifiche successive alle serie non aggiorneranno il testo manuale, finché non lo ripristini.
+- Anche per una seduta terminata puoi aprire Storico → seduta, premere Modifica sulle serie e correggere le note o il testo.
+- Da Progressi scegli la giornata e il mese, poi Copia per coach o Scarica TXT.
 
-Tutti gli allenamenti rimangono nel `localStorage` della stessa web app. **Non rimuovere l'icona della PWA e non cancellare i dati del browser.** Prima di aggiornare, salva **Impostazioni → Backup JSON** su iCloud Drive. Il TXT è un diario da inviare al coach, non un backup importabile.
+## Compatibilità e verifiche
 
-Spostare la data d'inizio o un inizio mese può ricalcolare la settimana degli allenamenti **automatici**, senza eliminarli; le sessioni **assegnate manualmente** mantengono la loro collocazione. Se la nuova data è posteriore ad alcuni allenamenti molto vecchi, il riepilogo può collocarli in W1 del primo mese: puoi correggerli singolarmente.
-
-## Come aggiornare il repository GitHub Pages
-
-1. Fai backup JSON dall'iPhone e salvalo esternamente.
-2. Dal file `SkillTrack_aggiornamento_v1_5.zip` estrai **tre file**: `index.html`, `sw.js`, `progress-v15.js`.
-3. Caricali nella **radice** del tuo repository GitHub, sostituendo i file esistenti quando necessario.
-4. **Non cancellare** `progress-v13.js`, `progress-v14.js`, `manifest.webmanifest`, icone o altri file.
-5. Premi **Commit changes**. Quando GitHub Pages ha finito, apri la PWA su iPhone con connessione attiva; chiudila e riaprila se vedi ancora la vecchia versione.
-
-Il codice è statico, gira nel browser, senza backend. Lo storico rimane locale e non viene pubblicato su GitHub.
+- Mantiene la chiave locale `skilltrack-data-v1` e lo schema principale `version:1`, aggiungendo soltanto campi opzionali.
+- Le serie e i risultati già registrati non vengono cancellati.
+- Verificati con test automatici Node: esempio testuale esatto, esercizi sostituiti, note, EMOM, testo personalizzato, settimana vuota e volume invariato.
+- Non è stato possibile verificare il rendering completo su Safari iPhone da questo ambiente. Verifica dopo il caricamento e conserva il backup JSON.
